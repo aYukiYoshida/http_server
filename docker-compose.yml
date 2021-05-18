@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  apache2:
+    image: apache2
+    build:
+      args:
+        - user=root
+      context   : ./
+      dockerfile: ./docker/Dockerfile
+    container_name: "apache2"
+    volumes:
+      - ./public-html:/usr/local/apache2/htdocs/public-html
+    ports:
+      - "8080:80"
+    environment:
+      - TEST_VARIABLE=test
+    tty: true
